@@ -1,16 +1,370 @@
 ---
-
+import Layout from '../layouts/Layout.astro';
+import LottieLoop from '../components/LottieLoop.tsx';
+import IsometricCanvas from '../components/IsometricCanvas.jsx';
+import MotionReveal from '../components/MotionReveal.jsx';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout title="Operation Ghost Genesis - Free 14-Day AI Agent Pilot" description="Deploy one AI agent. Free 14-day pilot. Replace 40+ hours/month with bespoke automation—fully remote, secure, and tailored to your workflow.">
+  <!-- Navigation -->
+  <nav class="container" style="position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(10, 10, 10, 0.9); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);">
+    <div style="display: flex; justify-content: space-between; align-items: center; padding: 1rem 0;">
+      <div style="font-family: var(--font-family-mono); font-weight: bold; color: var(--brand);">
+        GHOST GENESIS
+      </div>
+      <a href="#book-audit" class="button" style="background: var(--brand); border: none; color: white;">
+        Book Free Audit
+      </a>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="gradient-bg" style="min-height: 100vh; display: flex; align-items: center; padding-top: 80px;">
+    <div class="container">
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;">
+        <div>
+          <h1 style="font-size: 3.5rem; font-weight: 700; line-height: 1.1; margin-bottom: 1.5rem; background: linear-gradient(135deg, var(--text), var(--brand)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+            Deploy one AI agent.<br>
+            <span style="color: var(--accent); -webkit-text-fill-color: var(--accent);">Free 14-day pilot.</span>
+          </h1>
+          <p style="font-size: 1.25rem; color: var(--text-muted); margin-bottom: 2rem; line-height: 1.6;">
+            Replace 40+ hours/month with a bespoke automation—fully remote, secure, and tailored to your workflow.
+          </p>
+          <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+            <a href="#book-audit" class="button" style="background: var(--brand); border: none; color: white; font-size: 1.1rem; padding: 1rem 2rem;">
+              Book Free Audit
+            </a>
+            <a href="#how-it-works" class="button outline" style="border-color: var(--border); color: var(--text);">
+              See How It Works
+            </a>
+          </div>
+        </div>
+        <div>
+          <LottieLoop 
+            client:load
+            src="/animations/tech-waveform.json" 
+            className="hero-animation"
+            poster="/animations/tech-waveform-poster.svg"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Isometric Accent -->
+  <section style="padding: 2rem 0; background: var(--background);">
+    <div class="container">
+      <IsometricCanvas client:visible />
+    </div>
+  </section>
+
+  <!-- Value Props -->
+  <section style="padding: 6rem 0; background: var(--surface);">
+    <div class="container">
+      <MotionReveal client:visible>
+        <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 3rem; color: var(--text);">
+          Why Ghost Genesis?
+        </h2>
+      </MotionReveal>
+      
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+        <MotionReveal client:visible delay={0.1}>
+          <div class="glass" style="padding: 2rem;">
+            <h3 style="color: var(--brand); margin-bottom: 1rem;">🚀 Zero Setup Time</h3>
+            <p style="color: var(--text-muted);">Deploy in 48 hours. No infrastructure, no maintenance, no headaches.</p>
+          </div>
+        </MotionReveal>
+        
+        <MotionReveal client:visible delay={0.2}>
+          <div class="glass" style="padding: 2rem;">
+            <h3 style="color: var(--accent); margin-bottom: 1rem;">🔒 Enterprise Security</h3>
+            <p style="color: var(--text-muted);">OAuth only, least privilege access, full audit logs, revocable permissions.</p>
+          </div>
+        </MotionReveal>
+        
+        <MotionReveal client:visible delay={0.3}>
+          <div class="glass" style="padding: 2rem;">
+            <h3 style="color: var(--brand); margin-bottom: 1rem;">💰 Proven ROI</h3>
+            <p style="color: var(--text-muted);">Average 40+ hours saved monthly. Pay for itself in the first week.</p>
+          </div>
+        </MotionReveal>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section id="how-it-works" style="padding: 6rem 0; background: var(--background);">
+    <div class="container">
+      <MotionReveal client:visible>
+        <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 3rem; color: var(--text);">
+          How It Works
+        </h2>
+      </MotionReveal>
+      
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 3rem;">
+        <MotionReveal client:visible delay={0.1}>
+          <div style="text-align: center;">
+            <div style="width: 80px; height: 80px; background: var(--brand); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; font-size: 2rem; font-weight: bold;">
+              1
+            </div>
+            <h3 style="color: var(--text); margin-bottom: 1rem;">15-min Audit</h3>
+            <p style="color: var(--text-muted);">Quick discovery call to understand your workflow and identify automation opportunities.</p>
+          </div>
+        </MotionReveal>
+        
+        <MotionReveal client:visible delay={0.2}>
+          <div style="text-align: center;">
+            <div style="width: 80px; height: 80px; background: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; font-size: 2rem; font-weight: bold;">
+              2
+            </div>
+            <h3 style="color: var(--text); margin-bottom: 1rem;">48-hr Deployment</h3>
+            <p style="color: var(--text-muted);">Custom AI agent built and deployed to your environment with full security integration.</p>
+          </div>
+        </MotionReveal>
+        
+        <MotionReveal client:visible delay={0.3}>
+          <div style="text-align: center;">
+            <div style="width: 80px; height: 80px; background: var(--brand); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; font-size: 2rem; font-weight: bold;">
+              3
+            </div>
+            <h3 style="color: var(--text); margin-bottom: 1rem;">14-day Proof</h3>
+            <p style="color: var(--text-muted);">Free pilot period to see the results. No commitment, no risk, pure value.</p>
+          </div>
+        </MotionReveal>
+      </div>
+      
+      <MotionReveal client:visible delay={0.4}>
+        <div style="text-align: center; margin-top: 3rem;">
+          <a href="#book-audit" class="button" style="background: var(--brand); border: none; color: white; font-size: 1.1rem; padding: 1rem 2rem;">
+            Start Your Free Audit
+          </a>
+        </div>
+      </MotionReveal>
+    </div>
+  </section>
+
+  <!-- Use Cases -->
+  <section style="padding: 6rem 0; background: var(--surface);">
+    <div class="container">
+      <MotionReveal client:visible>
+        <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 3rem; color: var(--text);">
+          Perfect For
+        </h2>
+      </MotionReveal>
+      
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+        <MotionReveal client:visible delay={0.1}>
+          <div class="glass" style="padding: 2rem;">
+            <h3 style="color: var(--text); margin-bottom: 1rem;">👨‍💼 Operations Teams</h3>
+            <p style="color: var(--text-muted);">Automate data entry, report generation, and repetitive administrative tasks.</p>
+          </div>
+        </MotionReveal>
+        
+        <MotionReveal client:visible delay={0.2}>
+          <div class="glass" style="padding: 2rem;">
+            <h3 style="color: var(--text); margin-bottom: 1rem;">👩‍💻 Development Teams</h3>
+            <p style="color: var(--text-muted);">Code reviews, dependency updates, deployment monitoring, and bug triage.</p>
+          </div>
+        </MotionReveal>
+        
+        <MotionReveal client:visible delay={0.3}>
+          <div class="glass" style="padding: 2rem;">
+            <h3 style="color: var(--text); margin-bottom: 1rem;">📊 Data Teams</h3>
+            <p style="color: var(--text-muted);">ETL processes, data validation, report automation, and alert management.</p>
+          </div>
+        </MotionReveal>
+      </div>
+    </div>
+  </section>
+
+  <!-- ROI Receipts -->
+  <section style="padding: 6rem 0; background: var(--background);">
+    <div class="container">
+      <MotionReveal client:visible>
+        <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 3rem; color: var(--text);">
+          Real Results
+        </h2>
+      </MotionReveal>
+      
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem;">
+        <MotionReveal client:visible delay={0.1}>
+          <div class="glass" style="padding: 2rem; text-align: center;">
+            <div style="font-size: 3rem; font-weight: bold; color: var(--brand); margin-bottom: 0.5rem;">40+</div>
+            <p style="color: var(--text-muted);">Hours saved monthly</p>
+          </div>
+        </MotionReveal>
+        
+        <MotionReveal client:visible delay={0.2}>
+          <div class="glass" style="padding: 2rem; text-align: center;">
+            <div style="font-size: 3rem; font-weight: bold; color: var(--accent); margin-bottom: 0.5rem;">95%</div>
+            <p style="color: var(--text-muted);">Error reduction</p>
+          </div>
+        </MotionReveal>
+        
+        <MotionReveal client:visible delay={0.3}>
+          <div class="glass" style="padding: 2rem; text-align: center;">
+            <div style="font-size: 3rem; font-weight: bold; color: var(--brand); margin-bottom: 0.5rem;">$15K</div>
+            <p style="color: var(--text-muted);">Annual savings</p>
+          </div>
+        </MotionReveal>
+      </div>
+    </div>
+  </section>
+
+  <!-- Integrations Strip -->
+  <section style="padding: 4rem 0; background: var(--surface);">
+    <div class="container">
+      <MotionReveal client:visible>
+        <h3 style="text-align: center; color: var(--text-muted); margin-bottom: 2rem; font-size: 1.1rem;">
+          Integrates with your existing tools
+        </h3>
+      </MotionReveal>
+      
+      <div style="display: flex; justify-content: center; align-items: center; gap: 3rem; flex-wrap: wrap;">
+        <MotionReveal client:visible delay={0.1}>
+          <div style="color: var(--text-muted); font-family: var(--font-family-mono);">Slack</div>
+        </MotionReveal>
+        <MotionReveal client:visible delay={0.2}>
+          <div style="color: var(--text-muted); font-family: var(--font-family-mono);">GitHub</div>
+        </MotionReveal>
+        <MotionReveal client:visible delay={0.3}>
+          <div style="color: var(--text-muted); font-family: var(--font-family-mono);">Notion</div>
+        </MotionReveal>
+        <MotionReveal client:visible delay={0.4}>
+          <div style="color: var(--text-muted); font-family: var(--font-family-mono);">Airtable</div>
+        </MotionReveal>
+        <MotionReveal client:visible delay={0.5}>
+          <div style="color: var(--text-muted); font-family: var(--font-family-mono);">Zapier</div>
+        </MotionReveal>
+      </div>
+    </div>
+  </section>
+
+  <!-- Security & Privacy -->
+  <section style="padding: 6rem 0; background: var(--background);">
+    <div class="container">
+      <MotionReveal client:visible>
+        <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 3rem; color: var(--text);">
+          Security First
+        </h2>
+      </MotionReveal>
+      
+      <MotionReveal client:visible>
+        <div class="glass" style="padding: 3rem; text-align: center; max-width: 800px; margin: 0 auto;">
+          <p style="font-size: 1.2rem; color: var(--text); margin-bottom: 2rem; font-family: var(--font-family-mono);">
+            OAuth only • Least privilege • Revocable access • Logs on request
+          </p>
+          <p style="color: var(--text-muted); line-height: 1.6;">
+            Your data never leaves your environment. We use industry-standard OAuth flows with minimal permissions. 
+            All access is logged and can be revoked instantly. No data mining, no tracking, no surprises.
+          </p>
+        </div>
+      </MotionReveal>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section style="padding: 6rem 0; background: var(--surface);">
+    <div class="container">
+      <MotionReveal client:visible>
+        <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 3rem; color: var(--text);">
+          Frequently Asked Questions
+        </h2>
+      </MotionReveal>
+      
+      <div style="max-width: 800px; margin: 0 auto;">
+        <MotionReveal client:visible delay={0.1}>
+          <details class="glass" style="margin-bottom: 1rem;">
+            <summary style="padding: 1.5rem; cursor: pointer; color: var(--text); font-weight: 500;">What exactly is included in the free 14-day pilot?</summary>
+            <div style="padding: 0 1.5rem 1.5rem; color: var(--text-muted);">
+              Full access to your custom AI agent for 14 days, including setup, training, and ongoing support. No limitations, no hidden costs.
+            </div>
+          </details>
+        </MotionReveal>
+        
+        <MotionReveal client:visible delay={0.2}>
+          <details class="glass" style="margin-bottom: 1rem;">
+            <summary style="padding: 1.5rem; cursor: pointer; color: var(--text); font-weight: 500;">How long does deployment take?</summary>
+            <div style="padding: 0 1.5rem 1.5rem; color: var(--text-muted);">
+              From audit to live deployment: 48 hours. We work quickly to get you value fast.
+            </div>
+          </details>
+        </MotionReveal>
+        
+        <MotionReveal client:visible delay={0.3}>
+          <details class="glass" style="margin-bottom: 1rem;">
+            <summary style="padding: 1.5rem; cursor: pointer; color: var(--text); font-weight: 500;">What if I'm not satisfied after the pilot?</summary>
+            <div style="padding: 0 1.5rem 1.5rem; color: var(--text-muted);">
+              No questions asked. We'll remove the agent and you owe nothing. Your satisfaction is our priority.
+            </div>
+          </details>
+        </MotionReveal>
+        
+        <MotionReveal client:visible delay={0.4}>
+          <details class="glass" style="margin-bottom: 1rem;">
+            <summary style="padding: 1.5rem; cursor: pointer; color: var(--text); font-weight: 500;">Can I customize the AI agent's behavior?</summary>
+            <div style="padding: 0 1.5rem 1.5rem; color: var(--text-muted);">
+              Absolutely. Each agent is built specifically for your workflow and can be fine-tuned during the pilot period.
+            </div>
+          </details>
+        </MotionReveal>
+        
+        <MotionReveal client:visible delay={0.5}>
+          <details class="glass" style="margin-bottom: 1rem;">
+            <summary style="padding: 1.5rem; cursor: pointer; color: var(--text); font-weight: 500;">What security measures are in place?</summary>
+            <div style="padding: 0 1.5rem 1.5rem; color: var(--text-muted);">
+              OAuth-only access, least privilege permissions, full audit logging, and instant revocation capabilities.
+            </div>
+          </details>
+        </MotionReveal>
+        
+        <MotionReveal client:visible delay={0.6}>
+          <details class="glass" style="margin-bottom: 1rem;">
+            <summary style="padding: 1.5rem; cursor: pointer; color: var(--text); font-weight: 500;">How much does it cost after the pilot?</summary>
+            <div style="padding: 0 1.5rem 1.5rem; color: var(--text-muted);">
+              Pricing is based on usage and value delivered. We'll discuss options during your pilot period.
+            </div>
+          </details>
+        </MotionReveal>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section id="book-audit" style="padding: 6rem 0; background: var(--background);">
+    <div class="container">
+      <MotionReveal client:visible>
+        <div style="text-align: center; max-width: 600px; margin: 0 auto;">
+          <h2 style="font-size: 2.5rem; margin-bottom: 1.5rem; color: var(--text);">
+            Ready to Deploy?
+          </h2>
+          <p style="font-size: 1.2rem; color: var(--text-muted); margin-bottom: 2rem; line-height: 1.6;">
+            Book your free 15-minute audit and see how much time you can save with a custom AI agent.
+          </p>
+          
+          <!-- Calendly placeholder -->
+          <div class="glass" style="padding: 2rem; margin-bottom: 2rem;">
+            <p style="color: var(--text-muted); margin-bottom: 1rem;">📅 Schedule your free audit</p>
+            <a href="https://calendly.com/your-calendar" target="_blank" rel="noopener" class="button" style="background: var(--brand); border: none; color: white; font-size: 1.1rem; padding: 1rem 2rem;">
+              Book Free Audit
+            </a>
+          </div>
+          
+          <p style="color: var(--text-muted); font-size: 0.9rem;">
+            No commitment • 15 minutes • Immediate value
+          </p>
+        </div>
+      </MotionReveal>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer style="padding: 3rem 0; background: var(--surface); border-top: 1px solid var(--border);">
+    <div class="container">
+      <div style="text-align: center; color: var(--text-muted);">
+        <p style="margin-bottom: 1rem; font-family: var(--font-family-mono);">Operation Ghost Genesis</p>
+        <p style="font-size: 0.9rem;">Deploy AI agents that work for you.</p>
+      </div>
+    </div>
+  </footer>
+</Layout>
