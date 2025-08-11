@@ -1,8 +1,8 @@
 import { useEffect, useState, useRef } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { OrbitControls, Box } from '@react-three/drei';
+import { Environment, Sphere } from '@react-three/drei';
 
-function FloatingCard() {
+function GlossyOrb() {
   const meshRef = useRef();
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
 
@@ -18,40 +18,34 @@ function FloatingCard() {
 
   useFrame((state) => {
     if (!prefersReducedMotion && meshRef.current) {
-      meshRef.current.rotation.y = Math.sin(state.clock.elapsedTime * 0.5) * 0.1;
-      meshRef.current.position.y = Math.sin(state.clock.elapsedTime * 0.8) * 0.1;
+      meshRef.current.rotation.y = Math.sin(state.clock.elapsedTime * 0.3) * 0.2;
+      meshRef.current.rotation.x = Math.cos(state.clock.elapsedTime * 0.2) * 0.1;
     }
   });
 
   return (
     <group ref={meshRef}>
-      <Box args={[2, 0.1, 1.5]} position={[0, 0, 0]}>
-        <meshStandardMaterial 
-          color="#5BA8FF" 
+      <Sphere args={[1, 32, 32]} position={[0, 0, 0]}>
+        <meshPhysicalMaterial 
+          color="#5BA8FF"
           transparent 
           opacity={0.8}
-          metalness={0.5}
-          roughness={0.2}
+          metalness={0.9}
+          roughness={0.1}
+          clearcoat={1.0}
+          clearcoatRoughness={0.1}
+          envMapIntensity={1.5}
         />
-      </Box>
-      <Box args={[0.1, 1, 1.5]} position={[1, 0.5, 0]}>
-        <meshStandardMaterial 
-          color="#FF7A45" 
+      </Sphere>
+      
+      {/* Subtle inner glow */}
+      <Sphere args={[0.8, 16, 16]} position={[0, 0, 0]}>
+        <meshBasicMaterial 
+          color="#5BA8FF"
           transparent 
-          opacity={0.6}
-          metalness={0.3}
-          roughness={0.4}
+          opacity={0.1}
         />
-      </Box>
-      <Box args={[0.1, 1, 1.5]} position={[-1, 0.5, 0]}>
-        <meshStandardMaterial 
-          color="#5BA8FF" 
-          transparent 
-          opacity={0.6}
-          metalness={0.3}
-          roughness={0.4}
-        />
-      </Box>
+      </Sphere>
     </group>
   );
 }
@@ -84,24 +78,42 @@ export default function IsometricCanvas({ className = "" }) {
     return () => observer.disconnect();
   }, []);
 
-  // Return null on SSR or if reduced motion is preferred
-  if (typeof window === 'undefined' || prefersReducedMotion) {
+  // Return fallback image if reduced motion is preferred
+  if (prefersReducedMotion) {
     return (
       <div className={`isometric-placeholder ${className}`} style={{
         width: '100%',
         height: '200px',
         background: 'linear-gradient(45deg, rgba(91, 168, 255, 0.1), rgba(255, 122, 69, 0.1))',
-        borderRadius: '12px',
+        borderRadius: '16px',
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        position: 'relative',
+        overflow: 'hidden'
       }}>
+        <img 
+          src="/assets/posters/r3f-fallback.jpg" 
+          alt="3D scene preview"
+          style={{
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+            borderRadius: '16px'
+          }}
+          loading="lazy"
+          decoding="async"
+        />
         <div style={{
+          position: 'absolute',
+          top: '50%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
           width: '60px',
-          height: '40px',
-          background: 'linear-gradient(45deg, var(--brand), var(--accent))',
-          borderRadius: '4px',
-          transform: 'rotate(45deg)'
+          height: '60px',
+          background: 'radial-gradient(circle, var(--brand), transparent)',
+          borderRadius: '50%',
+          opacity: 0.6
         }}></div>
       </div>
     );
@@ -112,13 +124,13 @@ export default function IsometricCanvas({ className = "" }) {
       <div className={`isometric-placeholder ${className}`} style={{
         width: '100%',
         height: '200px',
-        background: 'rgba(255,255,255,0.05)',
-        borderRadius: '12px',
+        background: 'var(--card)',
+        borderRadius: '16px',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center'
       }}>
-        <span style={{ color: 'var(--text-muted)' }}>Loading 3D...</span>
+        <span style={{ color: 'var(--muted)' }}>Loading 3D...</span>
       </div>
     );
   }
@@ -126,19 +138,21 @@ export default function IsometricCanvas({ className = "" }) {
   return (
     <div className={`isometric-container ${className}`} style={{ width: '100%', height: '200px' }}>
       <Canvas
-        camera={{ position: [3, 2, 3], fov: 50 }}
+        camera={{ position: [0, 0, 3], fov: 60 }}
         style={{ background: 'transparent' }}
+        gl={{ 
+          antialias: true,
+          alpha: true,
+          powerPreference: "high-performance"
+        }}
       >
-        <ambientLight intensity={0.4} />
-        <pointLight position={[10, 10, 10]} intensity={0.8} />
-        <pointLight position={[-10, -10, -10]} intensity={0.3} />
-        <FloatingCard />
-        <OrbitControls 
-          enableZoom={false} 
-          enablePan={false}
-          autoRotate={!prefersReducedMotion}
-          autoRotateSpeed={0.5}
-        />
+        <ambientLight intensity={0.3} />
+        <pointLight position={[5, 5, 5]} intensity={0.8} color="#5BA8FF" />
+        <pointLight position={[-5, -5, -5]} intensity={0.4} color="#FF7A45" />
+        
+        <GlossyOrb />
+        
+        <Environment preset="city" />
       </Canvas>
     </div>
   );
